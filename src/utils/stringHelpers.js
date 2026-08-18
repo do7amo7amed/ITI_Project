@@ -1,4 +1,4 @@
-const captalize = (str) => {
+const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
@@ -16,5 +16,12 @@ const truncate = (str, maxLength) => {
     return str.slice(0, maxLength) + "...";
   }
 };
+
+module.exports = {
+  slugify,
+  capitalize,
+  truncate,
+};
+
 
 

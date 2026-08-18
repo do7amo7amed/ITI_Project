@@ -1,14 +1,14 @@
 const auth= require('./auth');
 const logger = require('./logger');
 const errorHandler = require('./errorHandler');
-const validiator = require('./validiator');
-const notFoundMiddleware = require('./notFoundMiddileware');
-const authorize = require('./authorize');
+const validator = require('./validator');
+const notFoundMiddleware = require('./notFoundMiddleware');
+//const authorize = require('./authorize');
 module.exports = {
     auth,
     logger,
     errorHandler,
-    validiator,
+    validator,
     notFoundMiddleware ,
-    authorize
+//    authorize
 }
