@@ -1,15 +1,12 @@
+const responseHandler = require("../utils/responseHandler");
+
 const validate = (schema) => {
     return (req, res, next) => {
         const result = schema.safeParse(req.body);
         if (!result.success){
-            return res.status(400).json({
-                success: false,
-                message: "validation failed",
-                errors: result.error.issues
-            });
-
+            return responseHandler(res, 400, result.error.format());
         }
-        req.body = result.data; // data after validaition and transform
+        req.body = result.data;
         next();
     };
 };

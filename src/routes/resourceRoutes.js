@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const resourseController = require("../controllers/resourceController");
+const resourceController = require("../controllers/resourceController");
 
-router.route("/").post(resourseController.createResourse);
+const {resourceSchema} = require("../validators/resourcesSchema");
+const validate = require("../middlewares/validator");
+
+router.route("/")
+.get(resourceController.getAllResources)
+.post(validate(resourceSchema), resourceController.createResourse);
 router.route("/:id")
-.get(resourseController.readResource)
-.put(resourseController.updateResource)
-.delete(resourseController.deleteResource);
+.get(resourceController.getSingleResource)
+.put(resourceController.updateResource)
+.delete(resourceController.deleteResource);
 
 module.exports = router;
