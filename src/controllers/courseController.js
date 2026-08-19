@@ -1,7 +1,7 @@
 const Course = require("../models/courseModel");
-const responseHandler = require("../utils/responseHandler"); // استدعاء الفانكشن بتاعت الباشمهندس
+const responseHandler = require("../utils/responseHandler");
 
-//gettling all courses
+//for getting all courses
 const getAllCourses = async (req, res, next) => {
   try {
     const courses = await Course.find();
@@ -14,10 +14,11 @@ const getAllCourses = async (req, res, next) => {
   }
 };
 
-//get course by ID
+//getting the course by courseCode
 const getCourse = async (req, res, next) => {
   try {
-    const course = await Course.findById(req.params.id);
+    const courseCode = req.params.courseCode.toUpperCase();
+    const course = await Course.findOne({ courseCode: courseCode });
     if (!course) {
       return responseHandler(res, 404, "Course not found", null);
     }
@@ -27,7 +28,8 @@ const getCourse = async (req, res, next) => {
   }
 };
 
-//create course
+
+//creating a new course
 const createCourse = async (req, res, next) => {
   try {
     const newCourse = await Course.create(req.body);
@@ -37,11 +39,16 @@ const createCourse = async (req, res, next) => {
   }
 };
 
-//  update course
+
+//updating the course by courseCode
 const updateCourse = async (req, res, next) => {
   try {
-    // new: true بترجع الكورس بعد التعديل مش قبله
-    const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const courseCode = req.params.courseCode.toUpperCase();
+    const updatedCourse = await Course.findOneAndUpdate(
+      { courseCode: courseCode }, 
+      req.body, 
+      { new: true, runValidators: true }
+    );
     if (!updatedCourse) {
       return responseHandler(res, 404, "Course not found", null);
     }
@@ -51,10 +58,12 @@ const updateCourse = async (req, res, next) => {
   }
 };
 
-//delete course 
+
+//deleting the course by courseCode
 const deleteCourse = async (req, res, next) => {
   try {
-    const deletedCourse = await Course.findByIdAndDelete(req.params.id);
+    const courseCode = req.params.courseCode.toUpperCase();
+    const deletedCourse = await Course.findOneAndDelete({ courseCode: courseCode });
     if (!deletedCourse) {
       return responseHandler(res, 404, "Course not found", null);
     }
