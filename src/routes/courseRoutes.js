@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { authenticate, authorize } = require("../middlewares");
 const { validate } = require("../middlewares/validator");
-const courseSchema = require("../validators/courseSchema");
+const courseSchema = require("../validators/courseValidator");
 
 const {
   getAllCourses,
