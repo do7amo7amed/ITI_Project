@@ -1,5 +1,5 @@
 const Resource = require("../models/resourcesModel");
-const responseHandler = require("../utils/responseHandler");
+const {responseHandler} = require("../utils/responseHandler");
 
 
 const createResource = async (req, res, next) => { // Create Resource
@@ -19,13 +19,13 @@ const createResource = async (req, res, next) => { // Create Resource
 
 const getAllResources = async (req, res, next) => { // Get All Resources
     try {
-        const resources = await Resource.find();
+        const resource = await Resource.find();
 
         if(!resource) {
             return responseHandler(res, 404, "Resource Not Found!");
         }
 
-        return responseHandler(res, 200, "Resources Found", resources);
+        return responseHandler(res, 200, "Resources Found", resource);
 
     } catch (err) {
         next(err);
@@ -55,7 +55,7 @@ const updateResource = async (req, res, next) => { // Update Resource
             return responseHandler(res, 404, "Resource Not Found!");
         }
 
-        return responseHandler(res, 200, "Resource Found", resource);
+        return responseHandler(res, 200, "Resource updated successfully", resource);
 
     } catch (err) {
         next(err);
@@ -70,9 +70,16 @@ const deleteResource = async (req, res, next) => { // Delete Resource
             return responseHandler(res, 404, "Resource Not Found!");
         }
 
-        return responseHandler(res, 200, "Resource Found", resource);
+        return responseHandler(res, 200, "Resource deleted successfully", resource);
 
     } catch (err) {
         next(err);
     }
 }
+module.exports = {
+    createResource,
+    getAllResources,
+    getSingleResource,
+    updateResource,
+    deleteResource
+};
