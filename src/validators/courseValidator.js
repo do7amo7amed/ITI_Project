@@ -7,3 +7,5 @@ const courseSchema = z.object({
     semester: z.string({ required_error: 'Semester is required' }).min(4, 'Semester must be at least 4 characters long').max(10, 'Semester cant be more than 10 characters'),
     description: z.string().max(200, "Description must be at most 200 characters long").optional()
 });
+
+module.exports = courseSchema;
