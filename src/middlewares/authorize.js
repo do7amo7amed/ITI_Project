@@ -1,20 +1,12 @@
-const authorize = (allowedRoles) => {
-    return (req, res, next) => {
-        const user = req.user;
-        if (!user) {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-        if (!allowedRoles.includes(user.role)) {
-            return res.status(403).json({
-                success: false,
-                 message: 'Access denied. insufficient permissions',
-                 code: 'FORBIDDEN',
-                 requiredRoles : allowedRoles,
-                 userRole: user.role
-                 });
-        }
-        next();
+const { sendError } = require('../utils/responseHandler');
+
+const authorize = (...allowedRoles) => {
+  return (req, res, next) => {
+    if (!allowedRoles.includes(req.user.role)) {
+      return sendError(res, 'You do not have permission to perform this action', 403);
     }
-}
+    next();
+  };
+};
 
 module.exports = authorize;
