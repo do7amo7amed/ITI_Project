@@ -1,6 +1,6 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 
-const courseSchema = new mongose.Schema({
+const courseSchema = new mongoose.Schema({
     courseName: {
         type: String,
         required: true, 
@@ -12,8 +12,7 @@ const courseSchema = new mongose.Schema({
         required: true,
         trim: true,
         minlength: 5,
-        unique: true,
-        Uppercase: true
+        unique: true
     },
     academicLevel: {
       type: String,
