@@ -38,6 +38,10 @@ const resourceSchema = new mongoose.Schema(
       type: String,
     },
 
+    cloudinaryPublicId: {
+      type: String,
+    },
+
     externalUrl: {
       type: String,
     },
