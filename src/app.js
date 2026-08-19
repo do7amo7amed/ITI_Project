@@ -1,5 +1,6 @@
 const express = require('express');
-const resourcesRoutes = require('./routes/resourcesRoutes');
+const resourcesRoutes = require('./routes/resourceRoutes');
+const authRoutes = require('./routes/authRoutes');
 const {errorHandler, notFoundMiddleware} = require('./middlewares');
 
 const app = express();
