@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { auth, authorize } = require("../middlewares");
-const validate = require("../middlewares/validator");
+const {validate}= require("../middlewares/validator");
 const courseSchema = require("../validators/courseValidator");
 
 const {
@@ -17,10 +17,10 @@ router.get("/", getAllCourses);
 
 router.get("/:courseCode", getCourse);
 
-router.post("/", auth, authorize(['admin']), validate(courseSchema), createCourse);
+router.post("/", auth, authorize('admin'), validate(courseSchema), createCourse);
 
-router.put("/:courseCode", auth, authorize(['admin']), validate(courseSchema), updateCourse);
+router.put("/:courseCode", auth, authorize('admin'), validate(courseSchema), updateCourse);
 
-router.delete("/:courseCode", auth, authorize(['admin']), deleteCourse);
+router.delete("/:courseCode", auth, authorize('admin'), deleteCourse);
 
 module.exports = router;

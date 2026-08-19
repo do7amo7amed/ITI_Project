@@ -1,5 +1,5 @@
 const Course = require("../models/courseModel");
-const responseHandler = require("../utils/responseHandler");
+const {responseHandler} = require("../utils/responseHandler");
 
 //for getting all courses
 const getAllCourses = async (req, res, next) => {
