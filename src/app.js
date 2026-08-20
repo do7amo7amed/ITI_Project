@@ -1,4 +1,4 @@
-//app.js
+///src/app.js
 //express app config
 
 const express = require('express');
