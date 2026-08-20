@@ -1,11 +1,14 @@
-const { sendError } = require('../utils/responseHandler');
+//src/middlewares/authorize.js
+// checks permissions
 
-const authorize = (...allowedRoles) => {
+const { responseHandler } = require('../utils/responseHandler');
+
+const authorize = (...allowedRoles) => {  
   return (req, res, next) => {
     if (!allowedRoles.includes(req.user.role)) {
-      return sendError(res, 'You do not have permission to perform this action', 403);
+      return responseHandler(res ,403, 'You do not have permission to perform this action');
     }
-    next();
+    next(); 
   };
 };
 
