@@ -1,0 +1,22 @@
+{
+  "name": "iti_project-lobna",
+  "version": "1.0.0",
+  "description": "A RESTful backend API for a student academic resource-sharing platform. Students can browse courses and access study materials (lecture notes, sheets, labs, assignments, previous exams, summaries, tutorials, and reference links), while admins manage courses and upload resources.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.3",
+    "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "zod": "^4.4.3"
+  }
+}
