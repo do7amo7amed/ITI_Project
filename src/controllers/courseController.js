@@ -1,4 +1,3 @@
-//src/controllers/courseController.js
 const Course = require("../models/courseModel");
 const {responseHandler} = require("../utils/responseHandler");
 
@@ -36,6 +35,10 @@ const createCourse = async (req, res, next) => {
     const newCourse = await Course.create(req.body);
     responseHandler(res, 201, "Course created successfully", newCourse);
   } catch (error) {
+    // اصطياد إيرور التكرار الخاص بـ Mongoose (كود 11000)
+    if (error.code === 11000) {
+      return responseHandler(res, 400, "This course code already exists. Please enter a unique course code.");
+    }
     next(error);
   }
 };
