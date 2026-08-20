@@ -1,4 +1,4 @@
-//authScehma.js
+//src/validators/authScehma.js
 const { z } = require('zod');
 
 // Schema for User Registration
