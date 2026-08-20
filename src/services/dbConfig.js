@@ -1,5 +1,7 @@
+//src/services/dbConfig.js
 const mongoose = require("mongoose");
 
+//fire & forget
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB);
@@ -10,4 +12,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; //to be able to use in server.js
