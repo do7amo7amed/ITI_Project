@@ -1,11 +1,14 @@
+//src/controllers/userController.js
+//implements profile retrieval, update, and delete
+
 const User = require("../models/userModel");
-const { sendSuccess, sendError } = require("../utils/responseHandler");
+const { responseHandler } = require('../utils/responseHandler');
 
 const { updateProfileSchema } = require("../validators/userProfileSchema");
 
 const getProfile = async (req, res, next) => {
   try {
-    return sendSuccess(res, req.user, "Profile retrieved successfully", 200);
+    return responseHandler(res, 200, "Profile retrieved successfully", req.user);
   } catch (error) {
     next(error);
   }
@@ -21,7 +24,7 @@ const updateProfile = async (req, res, next) => {
       { new: true, runValidators: true },
     ).select("-password");
 
-    return sendSuccess(res, updatedUser, "Profile updated successfully", 200);
+    return responseHandler(res, 200, "Profile updated successfully", updatedUser);
   } catch (error) {
     next(error);
   }
@@ -32,10 +35,10 @@ const deleteUser = async (req, res, next) => {
     const user = await User.findByIdAndDelete(req.params.id);
 
     if (!user) {
-      return sendError(res, "User not found", 404);
+      return responseHandler(res, 404, "User not found");
     }
 
-    return sendSuccess(res, null, "User deleted successfully", 200);
+    return responseHandler(res, 200, "User deleted successfully", null);
   } catch (error) {
     next(error);
   }
