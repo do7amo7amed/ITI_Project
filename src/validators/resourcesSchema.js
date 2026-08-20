@@ -243,4 +243,4 @@ const updateResourceSchema = resourceSchema.partial()
 
 
   });
-module.exports = {createResourceSchema,updateResourceSchema};
+module.exports = {createResourceSchema,updateResourceSchema,resourceTypes, sourceTypes};
