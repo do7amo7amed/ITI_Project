@@ -1,3 +1,4 @@
+//src/models/courseModel.js
 const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
@@ -15,9 +16,10 @@ const courseSchema = new mongoose.Schema({
         unique: true
     },
     academicLevel: {
-      type: String,
+      type: Number,
       required: true,
-      trim: true
+      min: 1,
+      max: 4,
     },
     semester: {
       type: String,
