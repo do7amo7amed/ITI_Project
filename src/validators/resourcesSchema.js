@@ -1,3 +1,4 @@
+//src/validators/resourcesShema.js
 const { z } = require("zod");
 
 //Defined allowed values
@@ -243,4 +244,4 @@ const updateResourceSchema = resourceSchema.partial()
 
 
   });
-module.exports = {createResourceSchema,updateResourceSchema,resourceTypes, sourceTypes};
+module.exports = {createResourceSchema,updateResourceSchema};
