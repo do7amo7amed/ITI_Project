@@ -1,11 +1,11 @@
+//src/utils/index.js
 const {sendSuccess, sendError} = require('./responseHandler');
-const {capitalize, slugify, truncate, escapeRegExp} = require('./stringHelpers');
+const {capitalize, slugify, truncate} = require('./stringHelpers');
 
 module.exports = {
     sendSuccess,
     sendError,
     capitalize,
     slugify,
-    truncate,
-    escapeRegExp
+    truncate
 }
