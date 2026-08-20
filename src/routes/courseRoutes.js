@@ -20,7 +20,7 @@ router.get("/:courseCode", getCourse);
 
 router.post("/", auth, authorize('admin'), validate(courseSchema), createCourse);
 
-router.put("/:courseCode", auth, authorize('admin'), validate(courseSchema), updateCourse);
+router.put("/:courseCode", auth, authorize('admin'), validate(courseSchema.partial()), updateCourse);
 
 router.delete("/:courseCode", auth, authorize('admin'), deleteCourse);
 
