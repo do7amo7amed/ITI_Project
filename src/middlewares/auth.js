@@ -1,8 +1,12 @@
-const jwt = require('jsonwebtoken');
-const userService = require('../services/userService');
-const { sendError } = require('../utils/responseHandler');
+// src/middlewares/auth.js
+// identifies user making req
 
-const authenticate = async (req, res, next) => {
+//signed string encodes data
+const jwt = require('jsonwebtoken'); 
+const userService = require('../services/userService');
+const { responseHandler } = require('../utils/responseHandler');
+
+const authenticate = async (req, res, next) => {  
   try {
     let token;
     
@@ -10,29 +14,26 @@ const authenticate = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
     }
 
-    if (!token) {
-      return sendError(res, 'You are not logged in. Please provide a token.', 401);
+    if (!token) { 
+      return responseHandler(res, 401, 'You are not logged in. Please provide a token.');
     }
 
-  
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || 'fallback-secret-key'
     );
-
     
     const currentUser = await userService.findUserById(decoded.id);
 
     if (!currentUser) {
-      return sendError(res, 'The user belonging to this token no longer exists.', 401);
+      return responseHandler(res, 401, 'The user belonging to this token no longer exists.');
     }
-
  
     req.user = currentUser;
     next();
   } catch (error) {
     if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-      return sendError(res, 'Invalid or expired token. Please log in again.', 401);
+      return responseHandler(res, 401, 'Invalid or expired token. Please log in again.');
     }
     next(error);
   }
