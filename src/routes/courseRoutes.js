@@ -1,8 +1,9 @@
+//src/routes/courseRoutes.js
 const express = require("express");
 const router = express.Router();
 
 const { auth, authorize } = require("../middlewares");
-const {validate}= require("../middlewares/validator");
+const validate = require("../middlewares/validator");
 const courseSchema = require("../validators/courseValidator");
 
 const {
