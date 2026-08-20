@@ -17,11 +17,13 @@ const truncate = (str, maxLength) => {
   }
 };
 
+const escapeRegExp = (str) => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
 module.exports = {
   slugify,
   capitalize,
   truncate,
+  escapeRegExp,
 };
-
-
-
