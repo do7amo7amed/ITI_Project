@@ -1,3 +1,6 @@
+//src/models/userModel.js
+// Mongoose schema, hashes password with bcrypt
+
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
@@ -34,7 +37,7 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Academic level is required"],
       min: 1,
-      max: 5,
+      max: 4,
     },
     role: {
       type: String,
@@ -43,7 +46,6 @@ const userSchema = new mongoose.Schema(
     },
     profileInformation: {
       bio: { type: String, default: "" },
-      avatar: { type: String, default: "" },
     },
   },
   {
@@ -51,13 +53,16 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+//prevents rehashing password if unnecesasry changes done
 userSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
 
+  //extra randomness so identical passwords don't produce identical hashes
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+//compares login password with stored hashed pass
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
