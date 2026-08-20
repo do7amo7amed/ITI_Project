@@ -1,3 +1,4 @@
+//src/controllers/courseController.js
 const Course = require("../models/courseModel");
 const {responseHandler} = require("../utils/responseHandler");
 
