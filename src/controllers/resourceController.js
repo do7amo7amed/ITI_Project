@@ -1,3 +1,4 @@
+//src/controllers/resourceController.js
 const Resource = require("../models/resourcesModel");
 const Course = require("../models/courseModel");
 const {responseHandler} = require("../utils/responseHandler");
@@ -11,7 +12,7 @@ const ALLOWED_SORT_FIELDS = ["createdAt", "downloadCount", "title"];
 const createResource = async (req, res, next) => { // Create Resource
     try {
         const {title, description, type, sourceType, externalUrl, course} = req.body;
-        const courseExists = await Course.findOne({ courseName: course });
+        const courseExists = await Course.findOne({ courseCode: course.toUpperCase() });
 
         if (!courseExists) {
           return responseHandler(
