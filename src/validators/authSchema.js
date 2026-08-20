@@ -1,3 +1,4 @@
+//authScehma.js
 const { z } = require('zod');
 
 // Schema for User Registration
@@ -24,13 +25,11 @@ const registerSchema = z.object({
   academicLevel: z
     .number({ required_error: 'Academic level is required' })
     .int('Academic level must be an integer')
-    .min(1, 'Academic level must be between 1 and 5')
-    .max(5, 'Academic level must be between 1 and 5'),
-  role: z.enum(['student', 'admin']).optional().default('student'),
-  profileInformation: z
+    .min(1, 'Academic level must be between 1 and 4')
+    .max(4, 'Academic level must be between 1 and 4'),
+    profileInformation: z
     .object({
       bio: z.string().optional(),
-      avatar: z.string().optional(),
     })
     .optional(),
 });
