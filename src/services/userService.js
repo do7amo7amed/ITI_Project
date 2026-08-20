@@ -1,3 +1,6 @@
+//src/services/userService.js
+// talks to db 
+
 const User = require('../models/userModel');
 
 const findUserByEmail = async (email) => {
@@ -9,7 +12,8 @@ const createUser = async (userData) => {
 };
 
 const findUserById = async (id) => {
-  return await User.findById(id).select('-password');
+  //returning user data excluding pass field
+  return await User.findById(id).select('-password'); 
 };
 
 module.exports = {
