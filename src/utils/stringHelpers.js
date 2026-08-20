@@ -1,3 +1,4 @@
+//src/utils/stringHelpers.js
 const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
@@ -15,15 +16,13 @@ const truncate = (str, maxLength) => {
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + "...";
   }
-};
-
-const escapeRegExp = (str) => {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return str;
 };
 
 module.exports = {
   slugify,
   capitalize,
   truncate,
-  escapeRegExp,
 };
+
+
